@@ -55,7 +55,7 @@ model.fit(feature_train, target_train)
 
 #computing the score on the test sets
 score = model.score(feature_test, target_test)
-print(f'The score of this model is: {score}.')
+print(f'The score of this break points opportunities model is: {score}.')
 
 #lets visulise this
 predictions = model.predict(feature_test)
@@ -79,7 +79,7 @@ model.fit(feature_train2, target_train2)
 
 #computing the score on the test sets
 score = model.score(feature_test2, target_test2)
-print(f'The score of this model is: {score}.')
+print(f'The score of this Aces model is: {score}.')
 
 #lets visulise this
 predictions2 = model.predict(feature_test2)
@@ -91,8 +91,31 @@ plt.show()
 plt.clf()
 
 
+print(f'Let\'s see if we can improve on these scores by using Aces and Break Points Opportunities to predict winnings')
 
 
+feature3 = tennis_df[['Aces', 'BreakPointsOpportunities']]
+target3 = tennis_df[['Winnings']]
+
+#Creating train and test sets
+feature_train3, feature_test3, target_train3, target_test3 = train_test_split(feature3, target3, train_size=0.8)
+
+#instantiating the model and fitting to the training sets
+model = LinearRegression()
+model.fit(feature_train3, target_train3)
+
+#computing the score on the test sets
+score = model.score(feature_test3, target_test3)
+print(f'The score of this Aces and BreakPointsOpportunities model is: {score}.')
+
+#lets visulise this
+predictions3 = model.predict(feature_test3)
+plt.scatter(target_test3 ,predictions3 , alpha=0.3)
+plt.xlabel('actual winnings')
+plt.ylabel('predicted winnings')
+plt.title('prediction winnings vs actual winnings using Aces and BreakPointsOpportunities')
+plt.show() 
+plt.clf()
 
 
 
